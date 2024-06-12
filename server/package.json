@@ -3,7 +3,8 @@
   "module": "main.ts",
   "type": "module",
   "scripts": {
-    "start": "bun main.ts"
+    "start": "bun main.ts",
+    "dev": "bun --watch run main.ts"
   },
   "devDependencies": {
     "@types/babel__generator": "^7.6.8",
