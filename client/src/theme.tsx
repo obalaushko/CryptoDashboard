@@ -18,6 +18,7 @@ const theme = createTheme({
 		},
 		background: {
 			default: '#12141c',
+			paper: 'rgb(40, 44, 52)',
 		},
 	},
 	spacing: 8,

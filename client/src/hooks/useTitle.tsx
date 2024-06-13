@@ -13,7 +13,7 @@ export const useTitle = () => {
 	}
 
 	useEffect(() => {
-		const title = `${context.title} - Dance bot (TG)`;
+		const title = `${context.title} - Crypto Dasboard`;
 		document.title = title;
 		window.history.pushState({}, title, document.location.pathname);
 	}, [context.title]);
