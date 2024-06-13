@@ -11,7 +11,7 @@ const startServer = async () => {
   const PORT = process.env.PORT || 4000;
 
 
-  await connectDB(); // Підключення до бази даних
+  await connectDB(); // Connect to MongoDB
 
   // Apollo Server setup
   const server = new ApolloServer({
