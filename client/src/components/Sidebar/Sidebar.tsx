@@ -1,8 +1,14 @@
-const SideBar: React.FC = () => {
+import { Drawer } from "@mui/material";
+interface SideBarProps {
+	open: boolean;
+
+}
+
+const SideBar: React.FC<SideBarProps> = ({open}) => {
 	return (
-		<div>
-			SideBar
-		</div>
+		<Drawer open={open}>
+			teadsf
+		</Drawer>
 	);
 };
 

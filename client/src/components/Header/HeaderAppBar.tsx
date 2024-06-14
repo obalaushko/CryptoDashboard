@@ -11,14 +11,20 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LanguageSwitcher from './LanguageSwitcher.tsx';
 import theme from '@/theme.tsx';
+import SideBar from '../Sidebar/Sidebar.tsx';
 
 export default function HeaderAppBar() {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const [openSidebar, setOpenSidebar] = React.useState(false);
 
 	const isMenuOpen = Boolean(anchorEl);
 
 	const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
+	};
+
+	const toggleDrawer = (newOpen: boolean) => () => {
+		setOpenSidebar(newOpen);
 	};
 
 	const handleMenuClose = () => {
@@ -46,7 +52,11 @@ export default function HeaderAppBar() {
 	);
 
 	return (
-		<AppBar position="sticky" sx={{background: theme.palette.background.paper}}>
+		<AppBar
+			position="sticky"
+			sx={{ background: theme.palette.background.paper }}
+			onClick={toggleDrawer(false)}
+		>
 			<Toolbar>
 				<IconButton
 					size="large"
@@ -54,6 +64,7 @@ export default function HeaderAppBar() {
 					color="inherit"
 					aria-label="open drawer"
 					sx={{ mr: 2 }}
+					onClick={toggleDrawer(true)}
 				>
 					<MenuIcon />
 				</IconButton>
@@ -80,6 +91,7 @@ export default function HeaderAppBar() {
 				</Box>
 			</Toolbar>
 			{renderProfileMenu}
+			<SideBar open={openSidebar} />
 		</AppBar>
 	);
 }
