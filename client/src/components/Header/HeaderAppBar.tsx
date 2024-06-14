@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LanguageSwitcher from './LanguageSwitcher.tsx';
+import theme from '@/theme.tsx';
 
 export default function HeaderAppBar() {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -24,15 +25,13 @@ export default function HeaderAppBar() {
 		setAnchorEl(null);
 	};
 
-	const menuId = 'primary-search-account-menu';
-	const renderMenu = (
+	const renderProfileMenu = (
 		<Menu
 			anchorEl={anchorEl}
 			anchorOrigin={{
 				vertical: 'top',
 				horizontal: 'right',
 			}}
-			id={menuId}
 			keepMounted
 			transformOrigin={{
 				vertical: 'top',
@@ -47,43 +46,40 @@ export default function HeaderAppBar() {
 	);
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
-				<Toolbar>
+		<AppBar position="sticky" sx={{background: theme.palette.background.paper}}>
+			<Toolbar>
+				<IconButton
+					size="large"
+					edge="start"
+					color="inherit"
+					aria-label="open drawer"
+					sx={{ mr: 2 }}
+				>
+					<MenuIcon />
+				</IconButton>
+				<Box sx={{ flexGrow: 1 }} />
+				<Box sx={{ display: { md: 'flex' } }}>
+					<LanguageSwitcher />
 					<IconButton
 						size="large"
-						edge="start"
+						aria-label="Settings"
 						color="inherit"
-						aria-label="open drawer"
-						sx={{ mr: 2 }}
 					>
-						<MenuIcon />
+						<SettingsRoundedIcon />
 					</IconButton>
-					<Box sx={{ flexGrow: 1 }} />
-					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-						<LanguageSwitcher />
-						<IconButton
-							size="large"
-							aria-label="Settings"
-							color="inherit"
-						>
-							<SettingsRoundedIcon />
-						</IconButton>
-						<IconButton
-							size="large"
-							edge="end"
-							aria-label="account of current user"
-							aria-controls={menuId}
-							aria-haspopup="true"
-							onClick={handleProfileMenuOpen}
-							color="inherit"
-						>
-							<AccountCircle />
-						</IconButton>
-					</Box>
-				</Toolbar>
-			</AppBar>
-			{renderMenu}
-		</Box>
+					<IconButton
+						size="large"
+						edge="end"
+						aria-label="account of current user"
+						aria-haspopup="true"
+						onClick={handleProfileMenuOpen}
+						color="inherit"
+					>
+						<AccountCircle />
+					</IconButton>
+				</Box>
+			</Toolbar>
+			{renderProfileMenu}
+		</AppBar>
 	);
 }

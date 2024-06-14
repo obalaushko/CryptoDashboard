@@ -1,22 +1,38 @@
-import { Box, Button, IconButton, Popover } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, IconButton, styled } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
+import ENFlagIcon from '@assets/flag-united-kingdom.svg?react';
+import UKFlagIcon from '@assets/flag-ukraine.svg?react';
+
+const StyledIconButton = styled(IconButton)(() => ({
+	'& svg': {
+		filter: 'brightness(0.4)',
+		transition: 'filter 0.3s ease',
+	},
+	'&.active svg': {
+		filter: 'brightness(1)',
+	},
+	'&:hover svg': {
+		filter: 'brightness(1)',
+	},
+	'&:active svg': {
+		filter: 'brightness(1)',
+	},
+}));
 
 const LanguageSwitcher: React.FC = () => {
-	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
 	const { i18n } = useTranslation();
+	const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
+
+	useEffect(() => {
+		const handleLanguageChanged = (lng: string) => {
+			setCurrentLanguage(lng);
+		};
+		i18n.on('languageChanged', handleLanguageChanged);
+		return () => {
+			i18n.off('languageChanged', handleLanguageChanged);
+		};
+	}, [i18n]);
 
 	const changeLanguage = (lng: string) => {
 		i18n.changeLanguage(lng);
@@ -24,35 +40,24 @@ const LanguageSwitcher: React.FC = () => {
 
 	return (
 		<Box>
-			<IconButton
-				size="large"
-				aria-label="Translate"
+			<StyledIconButton
+				size="medium"
+				aria-label="English"
 				color="inherit"
-				onClick={handleClick}
+				onClick={() => changeLanguage('en')}
+				className={currentLanguage === 'en' ? 'active' : ''}
 			>
-				<TranslateRoundedIcon />
-			</IconButton>
-			<Popover
-				id={id}
-				open={open}
-				anchorEl={anchorEl}
-				onClose={handleClose}
-				anchorOrigin={{
-					vertical: 'top',
-					horizontal: 'left',
-				}}
-				transformOrigin={{
-					vertical: 'top',
-					horizontal: 'left',
-				}}
+				<ENFlagIcon width={35} height={35} />
+			</StyledIconButton>
+			<StyledIconButton
+				size="medium"
+				aria-label="Ukrainian"
+				color="inherit"
+				onClick={() => changeLanguage('uk')}
+				className={currentLanguage === 'uk' ? 'active' : ''}
 			>
-				<Button color="inherit" onClick={() => changeLanguage('en')}>
-					EN
-				</Button>
-				<Button color="inherit" onClick={() => changeLanguage('uk')}>
-					UK
-				</Button>
-			</Popover>
+				<UKFlagIcon width={35} height={35} />
+			</StyledIconButton>
 		</Box>
 	);
 };
