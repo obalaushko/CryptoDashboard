@@ -2,5 +2,8 @@
 	"settings": {
 		"profile": "Profile",
 		"account": "My Account"
+	},
+	"tabs": {
+		"home": "Crypto Dasboard"
 	}
 }

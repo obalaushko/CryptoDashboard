@@ -1,4 +1,4 @@
-import { Box, Drawer } from '@mui/material';
+import { Box, Button, Container, Drawer } from '@mui/material';
 interface SideBarProps {
 	open: boolean;
 	toggleSideBar: () => void;
@@ -13,7 +13,10 @@ const SideBar: React.FC<SideBarProps> = ({ open, toggleSideBar }) => {
 				onClick={toggleSideBar}
 				onKeyDown={toggleSideBar}
 			>
-				Content goes here
+				<Container sx={{mt: "2rem"}}>
+					<p>Content goes here</p>
+					<Button variant="contained" color="primary">Button</Button>
+				</Container>
 			</Box>
 		</Drawer>
 	);

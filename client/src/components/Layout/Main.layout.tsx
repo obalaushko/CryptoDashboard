@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Box, Grid } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import HeaderAppBar from '../Header/HeaderAppBar.tsx';
 import { useState } from 'react';
 import SideBar from '../Sidebar/Sidebar.tsx';
@@ -19,9 +19,10 @@ const MainLayout: React.FC<MainLayoutProps> = () => {
 		>
 			<HeaderAppBar toggleSideBar={handleToggleSidebar} />
 			<SideBar open={openSidebar} toggleSideBar={handleToggleSidebar} />
-			<Grid container className="crypto-dashboard__container">
+
+			<Container className="crypto-dashboard__container">
 				<Outlet />
-			</Grid>
+			</Container>
 		</Box>
 	);
 };
