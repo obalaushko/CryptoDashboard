@@ -1,1 +1,6 @@
-{}
+{
+	"settings": {
+		"profile": "Profile",
+		"account": "My Account"
+	}
+}

@@ -11,6 +11,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LanguageSwitcher from './LanguageSwitcher.tsx';
 import theme from '@/theme.tsx';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderAppBarProps {
 	toggleSideBar: () => void;
@@ -18,6 +19,8 @@ interface HeaderAppBarProps {
 
 const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+	const { t } = useTranslation();
 
 	const isMenuOpen = Boolean(anchorEl);
 
@@ -44,8 +47,8 @@ const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}>{t('settings.profile')}</MenuItem>
+			<MenuItem onClick={handleMenuClose}>{t('settings.account')}</MenuItem>
 		</Menu>
 	);
 
