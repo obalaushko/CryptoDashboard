@@ -12,12 +12,17 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LanguageSwitcher from './LanguageSwitcher.tsx';
 import theme from '@/theme.tsx';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 interface HeaderAppBarProps {
-	toggleSideBar: () => void;
+	toggleSideBar: boolean;
+	handleTogglerSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
+const HeaderAppBar: React.FC<HeaderAppBarProps> = ({
+	toggleSideBar,
+	handleTogglerSidebar,
+}) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	const { t } = useTranslation();
@@ -47,8 +52,12 @@ const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>{t('settings.profile')}</MenuItem>
-			<MenuItem onClick={handleMenuClose}>{t('settings.account')}</MenuItem>
+			<MenuItem onClick={handleMenuClose}>
+				{t('settings.profile')}
+			</MenuItem>
+			<MenuItem onClick={handleMenuClose}>
+				{t('settings.account')}
+			</MenuItem>
 		</Menu>
 	);
 
@@ -56,6 +65,9 @@ const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
 		<AppBar
 			position="sticky"
 			sx={{ background: theme.palette.background.paper }}
+			className={clsx('header__wrapper', {
+				fullsize: !toggleSideBar,
+			})}
 		>
 			<Toolbar>
 				<IconButton
@@ -64,7 +76,7 @@ const HeaderAppBar: React.FC<HeaderAppBarProps> = ({ toggleSideBar }) => {
 					color="inherit"
 					aria-label="open drawer"
 					sx={{ mr: 2 }}
-					onClick={() => toggleSideBar()}
+					onClick={() => handleTogglerSidebar}
 				>
 					<MenuIcon />
 				</IconButton>

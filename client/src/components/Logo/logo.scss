@@ -1,0 +1,74 @@
+.animate-wrapper-logo {
+    position: relative;
+    span {
+        color: #fff;
+        font-size: 1.5em;
+        position: absolute;
+        transform: translate(0, -50%);
+
+        &:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 1px #525151;
+        }
+
+        &:nth-child(2) {
+            color: var(--primary-main);
+            animation: animate 4s ease-in-out infinite;
+            background: linear-gradient(
+                0deg,
+                rgb(246, 158, 60) 45%,
+                rgba(255, 255, 255, 1) 50%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+body.welcome {
+    .animate-wrapper-logo {
+        span {
+            &:nth-child(1) {
+                color: #0057b7;
+                -webkit-text-stroke: 1px #0057b7;
+            }
+
+            &:nth-child(2) {
+                color: #ffdd00;
+                background: unset;
+                -webkit-background-clip: unset;
+                -webkit-text-fill-color: unset;
+            }
+        }
+    }
+}
+
+@keyframes animate {
+    0%,
+    100% {
+        clip-path: polygon(
+            0% 45%,
+            16% 44%,
+            33% 50%,
+            54% 60%,
+            70% 61%,
+            84% 59%,
+            100% 52%,
+            100% 100%,
+            0% 100%
+        );
+    }
+
+    50% {
+        clip-path: polygon(
+            0% 60%,
+            15% 65%,
+            34% 66%,
+            51% 62%,
+            67% 50%,
+            84% 45%,
+            100% 46%,
+            100% 100%,
+            0% 100%
+        );
+    }
+}

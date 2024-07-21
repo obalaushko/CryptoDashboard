@@ -1,0 +1,42 @@
+:root {
+    --primary-main: rgb(251, 150, 120);
+    --bg-primary-dark: rgb(32, 35, 42);
+    --primary-contrastText: rgb(230, 229, 232);
+
+    --secondary-main: rgb(3, 201, 215);
+    --bg-secondary-dark: rgb(40, 44, 52);
+    --secondary-contrastText: rgb(173, 176, 187);
+
+    --text-primary-main: rgb(230, 229, 232);
+    --bg-light: rgb(50, 54, 62);
+
+    --logo-height: 64px;
+
+    --spacing: 16px;
+    --radius: 20px;
+    --radius-button: 8px;
+
+    --padding-main-content: 270px;
+
+    --success: rgb(0, 194, 146);
+    --error: rgb(228, 106, 118);
+    --warning: rgb(254, 201, 15);
+
+    --hover-secondary-main: rgba(3, 201, 215, 0.1);
+    --disabled-main: rgba(27, 27, 27, 0.4);
+    --disabled-mui: rgba(0, 0, 0, 0.38);
+}
+
+$bg-primary-light: --bg-primary-light;
+$bg-primary-main: --primary-main;
+$bg-primary-dark: --bg-primary-dark;
+$primary-contrastText: --primary-contrastText;
+
+$bg-secondary-light: --bg-secondary-light;
+$bg-secondary-main: --secondary-main;
+$bg-secondary-dark: --bg-secondary-dark;
+$bg-secondary-contrastText: --secondary-contrastText;
+
+$text-primary-main: --text-primary-main;
+
+$logo-height: --logo-height;

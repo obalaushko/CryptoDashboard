@@ -1,0 +1,57 @@
+.crypto-dashboard {
+    &__sidebar {
+        background: var(--bg-secondary-dark);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1200;
+
+        transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+        min-width: 250px;
+        transform: none;
+
+        &.hidden {
+            transform: translateX(-250px);
+        }
+
+        .sidebar {
+            &__list {
+                height: calc(100vh - var(--logo-height));
+                background: var(--bg-secondary-dark);
+            }
+
+            &__logo {
+                height: var(--logo-height);
+                display: flex;
+                align-items: center;
+                padding: 0;
+            }
+
+            &__button {
+                margin: 0 var(--spacing) 5px;
+                border-radius: var(--radius-button);
+                color: var(--text-primary-main);
+
+                &:hover {
+                    background: var(--bg-light);
+                }
+
+                &.active {
+                    background: var(--bg-primary-dark);
+                }
+
+                svg {
+                    color: var(--text-primary-main);
+                }
+            }
+
+            &__title {
+                margin-left: var(--spacing);
+                &-link {
+                    text-decoration: none;
+                    color: var(--text-primary-main);
+                }
+            }
+        }
+    }
+}

@@ -4,24 +4,30 @@ import HeaderAppBar from '../Header/HeaderAppBar.tsx';
 import { useState } from 'react';
 import SideBar from '../Sidebar/Sidebar.tsx';
 
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from '../Error/ErrorFallbacks.tsx';
+
 interface MainLayoutProps {}
 
 const MainLayout: React.FC<MainLayoutProps> = () => {
-	const [openSidebar, setOpenSidebar] = useState(false);
+	const [toggleSidebar, setToggleSideBar] = useState(true);
 
-	const handleToggleSidebar = () => {
-		setOpenSidebar((openSidebar) => !openSidebar);
-	};
+	const handleTogglerSidebar = () => {
+        setToggleSideBar(prevState => !prevState);
+    };
+
 	return (
-		<Box
-			className="crypto-dashboard"
-			onClick={() => openSidebar && setOpenSidebar(false)}
-		>
-			<HeaderAppBar toggleSideBar={handleToggleSidebar} />
-			<SideBar open={openSidebar} toggleSideBar={handleToggleSidebar} />
+		<Box className="crypto-dashboard">
+			<SideBar toggleSidebar={toggleSidebar} />
+			<HeaderAppBar
+				toggleSideBar={toggleSidebar}
+				handleTogglerSidebar={handleTogglerSidebar}
+			/>
 
-			<Container className="crypto-dashboard__container">
-				<Outlet />
+			<Container maxWidth="xl" className="crypto-dashboard__container">
+				<ErrorBoundary FallbackComponent={ErrorFallback}>
+					<Outlet />
+				</ErrorBoundary>
 			</Container>
 		</Box>
 	);
